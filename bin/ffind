@@ -6,7 +6,7 @@ then
         Filetypes="$3"
         echo "searching in *.$Filetypes"
 else
-        Filetypes="\(c\|cc\|cpp\|h\|hpp\|sx\|sxdef\|scm\|gen\|java\|php\|py\)"
+        Filetypes="\(c\|cc\|cpp\|h\|hpp\|sx\|sxdef\|scm\|gen\|java\|php\|py\|go\|js\)"
 fi
 
 find $1 -type f -iregex ".*$Filetypes" -exec grep "$2" --color=auto '{}' \; -print
