@@ -9,4 +9,10 @@ else
         Filetypes="\(c\|cc\|cpp\|h\|hpp\|sx\|sxdef\|scm\|gen\|java\|php\|py\|go\|js\)"
 fi
 
-find $1 -type f -iregex ".*$Filetypes" -exec grep "$2" --color=auto '{}' \; -print
+unamestr=$(uname)
+if [[ "$unamestr" == 'Darwin' ]]; then
+    ExtraOpts=-E
+    Filetypes=$(echo $Filetypes | sed s/"\\\\"//g)
+fi
+
+find $ExtraOpts $1 -type f -iregex ".*$Filetypes" -exec grep "$2" --color=auto '{}' \; -print
